@@ -36,31 +36,31 @@ namespace EFCore.RepositoryPattern.Generics
             return await dbContext
                 .Set<TEntity>()
                 .AsNoTracking()
-                .Join(ids, entity => entity.Id, id => id, (entity, _) => entity)
+                .Where(entity => ids.Contains(entity.Id))
                 .Distinct()
                 .ToListAsync(cancellationToken);
         }
 
         public virtual async Task DeleteAsync(TId id, CancellationToken cancellationToken = default)
         {
-            var entity = await GetByIdAsync(id);
+            var entity = await GetByIdAsync(id, cancellationToken);
             if (entity is null)
             {
                 throw new EntityNotFoundException<TEntity>();
             }
 
-            await base.DeleteAsync(entity);
+            await base.DeleteAsync(entity, cancellationToken);
         }
 
         public virtual async Task DeleteBulkAsync(IEnumerable<TId> ids, CancellationToken cancellationToken = default)
         {
-            var entities = await GetByIdsAsync(ids);
+            var entities = await GetByIdsAsync(ids, cancellationToken);
             if (!entities.Any())
             {
                 throw new EntityNotFoundException<TEntity>();
             }
 
-            await base.DeleteBulkAsync(entities);
+            await base.DeleteBulkAsync(entities, cancellationToken);
         }
 
         public override async Task SaveAsync(CancellationToken cancellationToken = default)

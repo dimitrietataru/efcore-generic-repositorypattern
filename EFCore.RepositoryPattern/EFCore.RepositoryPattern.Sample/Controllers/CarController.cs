@@ -42,7 +42,7 @@ namespace EFCore.RepositoryPattern.Sample.Controllers
 
         [HttpGet]
         [Route("api/v1/cars/{id:guid}")]
-        public async Task<IActionResult> GetByIdAsync([FromQuery] Guid id)
+        public async Task<IActionResult> GetByIdAsync([FromRoute] Guid id)
         {
             try
             {
@@ -106,7 +106,7 @@ namespace EFCore.RepositoryPattern.Sample.Controllers
 
         [HttpPut]
         [Route("api/v1/cars/{id:guid}")]
-        public async Task<IActionResult> UpdateAsync([FromQuery] Guid id, [FromBody] Car car)
+        public async Task<IActionResult> UpdateAsync([FromRoute] Guid id, [FromBody] Car car)
         {
             try
             {
@@ -138,7 +138,7 @@ namespace EFCore.RepositoryPattern.Sample.Controllers
 
         [HttpDelete]
         [Route("api/v1/cars/{id:guid}")]
-        public async Task<IActionResult> DeleteAsync([FromQuery] Guid id)
+        public async Task<IActionResult> DeleteAsync([FromRoute] Guid id)
         {
             try
             {
