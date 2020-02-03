@@ -1,11 +1,12 @@
-﻿using EFCore.RepositoryPattern.Sample.Data.Configurations;
+﻿using EFCore.RepositoryPattern.Generics;
+using EFCore.RepositoryPattern.Sample.Data.Configurations;
 using EFCore.RepositoryPattern.Sample.Data.Entities;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics.CodeAnalysis;
 
 namespace EFCore.RepositoryPattern.Sample.Data
 {
-    public class SampleDbContext : DbContext
+    public class SampleDbContext : TrackerDbContext
     {
         public SampleDbContext([NotNull] DbContextOptions options)
             : base(options)

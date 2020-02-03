@@ -1,3 +1,4 @@
+using EFCore.RepositoryPattern.Sample.Data;
 using EFCore.RepositoryPattern.Sample.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -19,7 +20,7 @@ namespace EFCore.RepositoryPattern.Sample
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<DbContext>(
+            services.AddDbContext<SampleDbContext>(
                 options => options.UseSqlServer(configuration.GetConnectionString("Local")),
                 ServiceLifetime.Scoped);
 
