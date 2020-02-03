@@ -26,5 +26,9 @@
     <Folder Include="Controllers\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\EFCore.RepositoryPattern.Generics\EFCore.RepositoryPattern.Generics.csproj" />
+  </ItemGroup>
+
 
 </Project>
