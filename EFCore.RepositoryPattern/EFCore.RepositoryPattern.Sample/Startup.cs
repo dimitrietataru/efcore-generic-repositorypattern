@@ -1,3 +1,4 @@
+using EFCore.RepositoryPattern.Sample.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -21,6 +22,8 @@ namespace EFCore.RepositoryPattern.Sample
             services.AddDbContext<DbContext>(
                 options => options.UseSqlServer(configuration.GetConnectionString("Local")),
                 ServiceLifetime.Scoped);
+
+            services.AddScoped<ICarService, CarService>();
 
             services
                 .AddControllers()
