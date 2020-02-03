@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29709.97
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFCore.RepositoryPattern.Generics", "EFCore.RepositoryPattern.Generics\EFCore.RepositoryPattern.Generics.csproj", "{DCA96B67-1873-4595-8D45-0F753974A840}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EFCore.RepositoryPattern.Generics", "EFCore.RepositoryPattern.Generics\EFCore.RepositoryPattern.Generics.csproj", "{DCA96B67-1873-4595-8D45-0F753974A840}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFCore.RepositoryPattern.Sample", "EFCore.RepositoryPattern.Sample\EFCore.RepositoryPattern.Sample.csproj", "{18C6A371-BDAB-427D-90F3-46F655BD9DF4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{DCA96B67-1873-4595-8D45-0F753974A840}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DCA96B67-1873-4595-8D45-0F753974A840}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DCA96B67-1873-4595-8D45-0F753974A840}.Release|Any CPU.Build.0 = Release|Any CPU
+		{18C6A371-BDAB-427D-90F3-46F655BD9DF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18C6A371-BDAB-427D-90F3-46F655BD9DF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18C6A371-BDAB-427D-90F3-46F655BD9DF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18C6A371-BDAB-427D-90F3-46F655BD9DF4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
