@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace EFCore.RepositoryPattern.Generics
 {
     public abstract class GenericRepository<TEntity, TId> :
-        AbstractRepository<TEntity>, IGenericRepository<TEntity, TId>, IRepositoryBase<TEntity>
+        AbstractRepository<TEntity>, IGenericRepository<TEntity, TId>, IAbstractRepository<TEntity>
         where TEntity : class, IIdentifiable<TId>
         where TId : struct
     {
@@ -20,6 +20,7 @@ namespace EFCore.RepositoryPattern.Generics
         public GenericRepository(TrackerDbContext dbContext)
             : base(dbContext)
         {
+            this.dbContext = dbContext;
         }
 
         public virtual async Task<TEntity> GetByIdAsync(TId id, CancellationToken cancellationToken = default)
@@ -62,9 +63,9 @@ namespace EFCore.RepositoryPattern.Generics
             await base.DeleteBulkAsync(entities);
         }
 
-        public async override Task SaveAsync(CancellationToken cancellationToken = default)
+        public override async Task SaveAsync(CancellationToken cancellationToken = default)
         {
-            _ = await dbContext.TrackSaveChangesAsync(cancellationToken);
+            _ = await dbContext.SaveChangesWithTrackingAsync(cancellationToken);
         }
     }
 }

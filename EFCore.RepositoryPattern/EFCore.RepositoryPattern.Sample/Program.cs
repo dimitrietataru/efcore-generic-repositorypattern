@@ -6,7 +6,7 @@ namespace EFCore.RepositoryPattern.Sample
 {
     public sealed class Program
     {
-        public async static Task Main(string[] args)
+        public static async Task Main(string[] args)
         {
             await Host
                 .CreateDefaultBuilder(args)

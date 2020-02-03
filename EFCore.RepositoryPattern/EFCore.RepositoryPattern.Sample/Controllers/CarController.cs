@@ -138,7 +138,7 @@ namespace EFCore.RepositoryPattern.Sample.Controllers
 
         [HttpDelete]
         [Route("api/v1/cars/{id:guid}")]
-        public async Task<IActionResult> DeleteAsync(Guid id)
+        public async Task<IActionResult> DeleteAsync([FromQuery] Guid id)
         {
             try
             {
@@ -158,7 +158,7 @@ namespace EFCore.RepositoryPattern.Sample.Controllers
 
         [HttpDelete]
         [Route("api/v1/cars")]
-        public async Task<IActionResult> DeleteBulkAsync(ICollection<Guid> ids)
+        public async Task<IActionResult> DeleteBulkAsync([FromQuery] ICollection<Guid> ids)
         {
             try
             {

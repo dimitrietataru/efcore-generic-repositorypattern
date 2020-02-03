@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EFCore.RepositoryPattern.Generics
 {
-    public interface IGenericRepository<TEntity, TId> : IRepositoryBase<TEntity>
+    public interface IGenericRepository<TEntity, TId> : IAbstractRepository<TEntity>
         where TEntity : class, IIdentifiable<TId>
         where TId : struct
     {

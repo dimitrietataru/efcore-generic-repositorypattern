@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EFCore.RepositoryPattern.Generics.Abstractions
 {
-    public abstract class AbstractRepository<TEntity> : IRepositoryBase<TEntity>
+    public abstract class AbstractRepository<TEntity> : IAbstractRepository<TEntity>
         where TEntity : class
     {
         private readonly DbContext dbContext;

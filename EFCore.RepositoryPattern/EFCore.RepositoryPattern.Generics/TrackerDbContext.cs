@@ -17,11 +17,11 @@ namespace EFCore.RepositoryPattern.Generics
         {
         }
 
-        public virtual Task<int> TrackSaveChangesAsync(CancellationToken cancellationToken = default)
+        public virtual async Task<int> SaveChangesWithTrackingAsync(CancellationToken cancellationToken = default)
         {
             WaterfallEntityTrack();
 
-            return base.SaveChangesAsync(cancellationToken);
+            return await base.SaveChangesAsync(cancellationToken);
         }
 
         private void WaterfallEntityTrack()

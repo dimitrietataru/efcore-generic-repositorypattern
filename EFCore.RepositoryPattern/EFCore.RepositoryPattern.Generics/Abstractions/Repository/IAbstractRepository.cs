@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace EFCore.RepositoryPattern.Generics.Abstractions.Repository
 {
-    public interface IRepositoryBase<TEntity>
+    public interface IAbstractRepository<TEntity>
         where TEntity : class
     {
         Task<IList<TEntity>> GetAllAsync(CancellationToken cancellationToken = default);
