@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -13,6 +14,11 @@ namespace EFCore.RepositoryPattern.Generics.Abstractions.Repository
         public AbstractRepository(DbContext dbContext)
         {
             this.dbContext = dbContext;
+        }
+
+        public IQueryable<TEntity> GetQueryable()
+        {
+            return dbContext.Set<TEntity>().AsNoTracking();
         }
 
         public virtual async Task<IList<TEntity>> GetAllAsync(CancellationToken cancellationToken = default)
@@ -62,6 +68,19 @@ namespace EFCore.RepositoryPattern.Generics.Abstractions.Repository
         public virtual async Task SaveAsync(CancellationToken cancellationToken = default)
         {
             _ = await dbContext.SaveChangesAsync(cancellationToken);
+        }
+
+        public async Task<int> CountAsync(CancellationToken cancellationToken = default)
+        {
+            return await dbContext
+                .Set<TEntity>()
+                .AsNoTracking()
+                .CountAsync(cancellationToken);
+        }
+
+        public async Task<int> CountAsync(IQueryable<TEntity> query, CancellationToken cancellationToken = default)
+        {
+            return await query.CountAsync(cancellationToken);
         }
     }
 }
