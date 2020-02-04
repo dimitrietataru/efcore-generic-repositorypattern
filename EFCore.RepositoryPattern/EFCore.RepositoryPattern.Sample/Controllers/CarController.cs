@@ -25,9 +25,9 @@ namespace EFCore.RepositoryPattern.Sample.Controllers
         {
             try
             {
-                var result = await carService.GetAllAsync();
+                var cars = await carService.GetAllAsync();
 
-                return Ok(result);
+                return Ok(cars);
             }
             catch
             {
@@ -41,9 +41,9 @@ namespace EFCore.RepositoryPattern.Sample.Controllers
         {
             try
             {
-                var result = await carService.GetByIdAsync(id);
+                var car = await carService.GetByIdAsync(id);
 
-                return Ok(result);
+                return Ok(car);
             }
             catch (EntityNotFoundException<Car>)
             {
@@ -61,9 +61,9 @@ namespace EFCore.RepositoryPattern.Sample.Controllers
         {
             try
             {
-                var result = await carService.GetByIdsAsync(ids);
+                var cars = await carService.GetByIdsAsync(ids);
 
-                return Ok(result);
+                return Ok(cars);
             }
             catch (EntityNotFoundException<Car>)
             {
