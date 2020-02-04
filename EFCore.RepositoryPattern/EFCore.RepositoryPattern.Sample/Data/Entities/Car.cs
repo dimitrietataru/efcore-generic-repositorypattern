@@ -1,4 +1,4 @@
-﻿using EFCore.RepositoryPattern.Generics.Abstractions;
+﻿using EFCore.RepositoryPattern.Generics.Abstractions.Domain;
 using EFCore.RepositoryPattern.Sample.Data.Entities.Enums;
 using System;
 

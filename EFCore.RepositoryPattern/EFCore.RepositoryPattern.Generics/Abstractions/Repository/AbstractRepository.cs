@@ -1,10 +1,9 @@
-﻿using EFCore.RepositoryPattern.Generics.Abstractions.Repository;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace EFCore.RepositoryPattern.Generics.Abstractions
+namespace EFCore.RepositoryPattern.Generics.Abstractions.Repository
 {
     public abstract class AbstractRepository<TEntity> : IAbstractRepository<TEntity>
         where TEntity : class

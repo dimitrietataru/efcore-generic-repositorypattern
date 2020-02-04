@@ -1,5 +1,4 @@
-﻿using EFCore.RepositoryPattern.Generics.Abstractions;
-using EFCore.RepositoryPattern.Generics.Abstractions.Domain;
+﻿using EFCore.RepositoryPattern.Generics.Abstractions.Domain;
 using EFCore.RepositoryPattern.Generics.Abstractions.Repository;
 using EFCore.RepositoryPattern.Generics.Exceptions;
 using Microsoft.EntityFrameworkCore;
@@ -10,8 +9,7 @@ using System.Threading.Tasks;
 
 namespace EFCore.RepositoryPattern.Generics
 {
-    public abstract class GenericRepository<TEntity, TId> :
-        AbstractRepository<TEntity>, IGenericRepository<TEntity, TId>, IAbstractRepository<TEntity>
+    public abstract class GenericRepository<TEntity, TId> : AbstractRepository<TEntity>, IGenericRepository<TEntity, TId>
         where TEntity : class, IIdentifiable<TId>
         where TId : struct
     {

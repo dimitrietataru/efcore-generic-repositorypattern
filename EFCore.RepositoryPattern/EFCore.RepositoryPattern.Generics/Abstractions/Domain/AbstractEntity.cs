@@ -1,7 +1,6 @@
-﻿using EFCore.RepositoryPattern.Generics.Abstractions.Domain;
-using System;
+﻿using System;
 
-namespace EFCore.RepositoryPattern.Generics.Abstractions
+namespace EFCore.RepositoryPattern.Generics.Abstractions.Domain
 {
     public abstract class AbstractEntity<TId> :
         IIdentifiable<TId>, IDeletable, ITimeTraceable, IEquatable<AbstractEntity<TId>>
