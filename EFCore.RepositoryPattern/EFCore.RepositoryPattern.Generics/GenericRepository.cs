@@ -15,9 +15,9 @@ namespace EFCore.RepositoryPattern.Generics
         where TEntity : class, IIdentifiable<TId>
         where TId : struct
     {
-        private readonly TrackerDbContext dbContext;
+        private readonly DbContext dbContext;
 
-        public GenericRepository(TrackerDbContext dbContext)
+        public GenericRepository(DbContext dbContext)
             : base(dbContext)
         {
             this.dbContext = dbContext;
@@ -61,11 +61,6 @@ namespace EFCore.RepositoryPattern.Generics
             }
 
             await base.DeleteBulkAsync(entities, cancellationToken);
-        }
-
-        public override async Task SaveAsync(CancellationToken cancellationToken = default)
-        {
-            _ = await dbContext.SaveChangesWithTrackingAsync(cancellationToken);
         }
     }
 }
