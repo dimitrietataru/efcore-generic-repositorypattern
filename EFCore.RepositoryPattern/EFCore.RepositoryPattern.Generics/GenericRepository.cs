@@ -23,29 +23,39 @@ namespace EFCore.RepositoryPattern.Generics
 
         public virtual async Task<TEntity> GetByIdAsync(TId id, CancellationToken cancellationToken = default)
         {
-            return await dbContext
+            var result = await dbContext
                 .Set<TEntity>()
                 .AsNoTracking()
                 .FirstOrDefaultAsync(entity => id.Equals(entity.Id), cancellationToken);
+
+            if (result is null)
+            {
+                throw new EntityNotFoundException<TEntity>();
+            }
+
+            return result;
         }
 
         public virtual async Task<IList<TEntity>> GetByIdsAsync(IEnumerable<TId> ids, CancellationToken cancellationToken = default)
         {
-            return await dbContext
+            var result = await dbContext
                 .Set<TEntity>()
                 .AsNoTracking()
                 .Where(entity => ids.Contains(entity.Id))
                 .Distinct()
                 .ToListAsync(cancellationToken);
+
+            if (!result.Any())
+            {
+                throw new EntityNotFoundException<TEntity>();
+            }
+
+            return result;
         }
 
         public virtual async Task DeleteAsync(TId id, CancellationToken cancellationToken = default)
         {
             var entity = await GetByIdAsync(id, cancellationToken);
-            if (entity is null)
-            {
-                throw new EntityNotFoundException<TEntity>();
-            }
 
             await base.DeleteAsync(entity, cancellationToken);
         }
@@ -53,10 +63,6 @@ namespace EFCore.RepositoryPattern.Generics
         public virtual async Task DeleteBulkAsync(IEnumerable<TId> ids, CancellationToken cancellationToken = default)
         {
             var entities = await GetByIdsAsync(ids, cancellationToken);
-            if (!entities.Any())
-            {
-                throw new EntityNotFoundException<TEntity>();
-            }
 
             await base.DeleteBulkAsync(entities, cancellationToken);
         }

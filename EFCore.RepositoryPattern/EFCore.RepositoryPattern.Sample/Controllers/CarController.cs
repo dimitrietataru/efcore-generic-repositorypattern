@@ -4,7 +4,6 @@ using EFCore.RepositoryPattern.Sample.Services;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace EFCore.RepositoryPattern.Sample.Controllers
@@ -27,10 +26,6 @@ namespace EFCore.RepositoryPattern.Sample.Controllers
             try
             {
                 var result = await carService.GetAllAsync();
-                if (!result.Any())
-                {
-                    return NoContent();
-                }
 
                 return Ok(result);
             }
@@ -50,6 +45,10 @@ namespace EFCore.RepositoryPattern.Sample.Controllers
 
                 return Ok(result);
             }
+            catch (EntityNotFoundException<Car>)
+            {
+                return NotFound();
+            }
             catch
             {
                 return BadRequest();
@@ -65,6 +64,10 @@ namespace EFCore.RepositoryPattern.Sample.Controllers
                 var result = await carService.GetByIdsAsync(ids);
 
                 return Ok(result);
+            }
+            catch (EntityNotFoundException<Car>)
+            {
+                return NotFound();
             }
             catch
             {
@@ -106,13 +109,17 @@ namespace EFCore.RepositoryPattern.Sample.Controllers
 
         [HttpPut]
         [Route("api/v1/cars/{id:guid}")]
-        public async Task<IActionResult> UpdateAsync([FromRoute] Guid id, [FromBody] Car car)
+        public async Task<IActionResult> UpdateAsync([FromBody] Car car, [FromRoute] Guid id)
         {
             try
             {
                 await carService.UpdateAsync(car);
 
-                return Accepted(car);
+                return Ok(car);
+            }
+            catch (EntityNotFoundException<Car>)
+            {
+                return NotFound();
             }
             catch
             {
@@ -128,7 +135,11 @@ namespace EFCore.RepositoryPattern.Sample.Controllers
             {
                 await carService.UpdateBulkAsync(cars);
 
-                return Accepted(cars);
+                return Ok(cars);
+            }
+            catch (EntityNotFoundException<Car>)
+            {
+                return NotFound();
             }
             catch
             {
@@ -144,11 +155,11 @@ namespace EFCore.RepositoryPattern.Sample.Controllers
             {
                 await carService.DeleteAsync(id);
 
-                return Accepted();
+                return NoContent();
             }
             catch (EntityNotFoundException<Car>)
             {
-                return NoContent();
+                return NotFound();
             }
             catch
             {
@@ -164,11 +175,11 @@ namespace EFCore.RepositoryPattern.Sample.Controllers
             {
                 await carService.DeleteBulkAsync(ids);
 
-                return Accepted();
+                return NoContent();
             }
             catch (EntityNotFoundException<Car>)
             {
-                return NoContent();
+                return NotFound();
             }
             catch
             {
